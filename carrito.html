@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <link rel="stylesheet" href="CSS/carrito.css">
+
+    <!-- El orden importa: primero las funciones compartidas, luego carrito.js -->
+    <script src="scripts/carrito-storage.js" defer></script>
+    <script src="scripts/carrito.js" defer></script>
+    <script src="scripts/components.js" defer></script>
+</head>
+
+<body>
+
+    <header>
+        <div id="header"></div>
+    </header>
+
+    <!-- Contenedor principal de la página (sin header ni footer) -->
+    <main class="container">
+
+        <!-- ========================================== -->
+        <!-- AQUÍ PONDRÁS LA IMAGEN DEL ASTRONAUTA      -->
+        <!-- ========================================== -->
+
+        <h1 class="page-title">Carrito de Compras</h1>
+
+        <div class="cart-layout">
+            <!-- Sección de la lista de productos -->
+            <section class="cart-items-section">
+                <div class="cart-table-header">
+                    <div class="col-product">Producto</div>
+                    <div class="col-ref">Referencia</div>
+                    <div class="col-price">Precio Unitario</div>
+                    <div class="col-qty">Cantidad</div>
+                    <div class="col-subtotal">Subtotal</div>
+                    <div class="col-action"></div>
+                </div>
+
+                <!-- Aquí JavaScript inyecta los items guardados en localStorage -->
+                <div id="cart-container"></div>
+            </section>
+
+            <!-- Sección del resumen del pedido -->
+            <aside class="cart-summary">
+                <h2>Resumen del Pedido</h2>
+
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="summary-subtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Envío Estimado</span>
+                    <span id="summary-shipping">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Impuestos (IVA 21%)</span>
+                    <span id="summary-tax">$0.00</span>
+                </div>
+
+                <div class="summary-row total-row">
+                    <span class="total-label">Total</span>
+                    <span id="summary-total" class="total-amount">$0.00</span>
+                </div>
+
+                 <a href="resumen.html">
+                    <button class="btn-checkout">Finalizar pedido </button>
+               </a>
+                <div class="continue-shopping">
+                    <a href="home.html">Continuar Comprando</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <div id="footer"></div>
+    </footer>
+
+</body>
+</html>

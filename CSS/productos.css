@@ -1,0 +1,464 @@
+/* =========================================================
+    1. VARIABLES GENERALES
+    ========================================================= */
+
+:root {
+    --azul-oscuro: #092b46;
+    --azul: #0879ad;
+    --azul-claro: #eaf6fb;
+    --gris-fondo: #f4f6f7;
+    --gris-borde: #d8dde1;
+    --gris-texto: #6d7479;
+    --texto: #18232c;
+    --blanco: #ffffff;
+
+    --radio: 6px;
+    --sombra: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+    2. RESET BÁSICO
+    ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--gris-fondo);
+    color: var(--texto);
+    line-height: 1.4;
+}
+
+button,
+input,
+select {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+    3. CONTENEDOR PRINCIPAL
+    ========================================================= */
+
+.contenedor {
+    width: min(1200px, 94%);
+    margin: 40px auto;
+}
+
+.titulo-pagina {
+    margin-bottom: 5px;
+    font-size: 30px;
+}
+
+.descripcion-pagina {
+    color: var(--gris-texto);
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+    4. NAVEGACIÓN INTERNA
+    NO ES HEADER. Es solamente el menú del contenido.
+    ========================================================= */
+
+.menu-categorias {
+    background: var(--blanco);
+    border: 1px solid var(--gris-borde);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    margin-bottom: 30px;
+}
+
+.menu-categorias__boton {
+    width: 100%;
+    padding: 15px 20px;
+    border: none;
+    background: var(--azul-oscuro);
+    color: white;
+    text-align: left;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: var(--radio) var(--radio) 0 0;
+}
+
+/* Contenedor del mega menú */
+.mega-menu {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    padding: 25px;
+}
+
+.mega-menu__grupo h3 {
+    font-size: 14px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.mega-menu__grupo ul {
+    list-style: none;
+}
+
+.mega-menu__grupo li {
+    margin-bottom: 9px;
+}
+
+.mega-menu__grupo a {
+    color: var(--texto);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.mega-menu__grupo a:hover {
+    color: var(--azul);
+}
+
+
+/* =========================================================
+    5. BUSCADOR Y FILTROS
+    ========================================================= */
+
+.controles {
+    background: var(--blanco);
+    border: 1px solid var(--gris-borde);
+    border-radius: var(--radio);
+    padding: 18px;
+    margin-bottom: 20px;
+}
+
+.busqueda {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.filtros {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.campo {
+    width: 100%;
+    height: 42px;
+    border: 1px solid var(--gris-borde);
+    border-radius: 4px;
+    padding: 0 12px;
+    background: white;
+    color: var(--texto);
+    outline: none;
+}
+
+.campo:focus {
+    border-color: var(--azul);
+}
+
+
+/* =========================================================
+    6. LAYOUT CATÁLOGO
+    ========================================================= */
+
+.catalogo-layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 25px;
+    align-items: start;
+}
+
+
+/* =========================================================
+    7. GRID DE PRODUCTOS
+    ========================================================= */
+
+.productos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.producto {
+    display: flex;
+    flex-direction: column;
+    background: var(--blanco);
+    border: 1px solid var(--gris-borde);
+    border-radius: var(--radio);
+    overflow: hidden;
+    transition: 0.2s ease;
+}
+
+.producto:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sombra);
+}
+
+/*
+    Como pediste SIN imágenes,
+    este bloque sustituye visualmente a la fotografía.
+*/
+.producto__placeholder {
+    height: 150px;
+    background:
+        linear-gradient(
+            135deg,
+            #edf0f1,
+            #dfe3e5
+        );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #a1a8ad;
+    font-size: 13px;
+}
+
+.producto__contenido {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.producto__titulo {
+    font-size: 16px;
+    margin-bottom: 2px;
+}
+
+.producto__marca {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--azul);
+}
+
+.producto__dato {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.producto__descripcion {
+    font-size: 12px;
+    color: var(--gris-texto);
+    margin: 7px 0 15px;
+}
+
+.producto__boton {
+    margin-top: auto;
+    border: none;
+    background: var(--azul);
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.producto__boton:hover {
+    background: var(--azul-oscuro);
+}
+
+
+/* =========================================================
+    8. PANEL DE DETALLE DEL PRODUCTO
+    ========================================================= */
+
+.detalle {
+    background: var(--blanco);
+    border: 1px solid var(--gris-borde);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    padding: 20px;
+
+    /* Mantiene el detalle visible mientras hacemos scroll */
+    position: sticky;
+    top: 20px;
+}
+
+.detalle__placeholder {
+    height: 200px;
+    background: linear-gradient(
+        135deg,
+        #edf0f1,
+        #dfe3e5
+    );
+
+    border-radius: 5px;
+    margin-bottom: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #9aa1a5;
+}
+
+.detalle__titulo {
+    font-size: 24px;
+    line-height: 1.1;
+    margin-bottom: 5px;
+}
+
+.detalle__marca {
+    font-weight: bold;
+    color: var(--azul);
+    margin-bottom: 15px;
+}
+
+.detalle__categoria {
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.detalle h3 {
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.detalle__descripcion {
+    font-size: 13px;
+    color: var(--gris-texto);
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+    9. TABLA DE ESPECIFICACIONES
+    ========================================================= */
+
+.tabla-datos {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0 20px;
+    font-size: 13px;
+}
+
+.tabla-datos tr {
+    border-bottom: 1px solid var(--gris-borde);
+}
+
+.tabla-datos th,
+.tabla-datos td {
+    padding: 8px;
+    text-align: left;
+}
+
+.tabla-datos th {
+    width: 45%;
+    background: #eef1f2;
+}
+
+
+/* =========================================================
+    10. BOTONES DEL DETALLE
+    ========================================================= */
+
+.detalle__acciones {
+    display: grid;
+    gap: 8px;
+}
+
+.btn {
+    padding: 11px 15px;
+    border-radius: 4px;
+    border: 1px solid var(--azul);
+    font-weight: bold;
+}
+
+.btn-principal {
+    background: var(--azul);
+    color: white;
+}
+
+.btn-principal:hover {
+    background: var(--azul-oscuro);
+}
+
+.btn-secundario {
+    background: white;
+    color: var(--azul);
+}
+
+.btn-secundario:hover {
+    background: var(--azul-claro);
+}
+
+
+/* =========================================================
+    11. MENSAJE CUANDO NO HAY PRODUCTOS
+    ========================================================= */
+
+.sin-resultados {
+    display: none;
+    grid-column: 1 / -1;
+    background: white;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid var(--gris-borde);
+    border-radius: var(--radio);
+    color: var(--gris-texto);
+}
+
+
+/* =========================================================
+    12. DISEÑO RESPONSIVE
+    ========================================================= */
+
+/* Tablets */
+@media (max-width: 1000px) {
+
+    .catalogo-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .detalle {
+        position: static;
+    }
+
+    .productos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .mega-menu {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* Celulares */
+@media (max-width: 650px) {
+
+    .contenedor {
+        width: 92%;
+        margin-top: 20px;
+    }
+
+    .titulo-pagina {
+        font-size: 25px;
+    }
+
+    .busqueda,
+    .filtros {
+        grid-template-columns: 1fr;
+    }
+
+    .productos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mega-menu {
+        grid-template-columns: 1fr;
+    }
+
+    .mega-menu.oculto {
+        display: none;
+    }
+}

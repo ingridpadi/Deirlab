@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Permite que el diseño se adapte a celular, tablet y computadora -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Catálogo de Reactivos</title>
+
+    <link rel="stylesheet" href="CSS/productos.css">
+    <script src="scripts/carrito-storage.js" defer></script>
+    <script src="scripts/productos.js" defer></script>
+    <script src="scripts/components.js" defer></script>
+    <style>
+        /* Previsualización de imagen en el panel de detalle:
+           tamaño fijo y recorte proporcional, sin deformarse
+           ni mostrarse al tamaño original del archivo. */
+        .detalle__imagen {
+            width: 100%;
+            max-width: 320px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto 1rem;
+        }
+
+        /* Miniatura de cada tarjeta en el grid */
+        .producto__imagen {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 6px;
+            display: block;
+        }
+
+        /* La tarjeta completa es clicable y muestra la preview */
+        .producto {
+            cursor: pointer;
+        }
+
+        /* Tarjeta cuyo detalle se está viendo */
+        .producto--activo,
+        .producto:focus-visible {
+            outline: 2px solid #1a7a3c;
+            outline-offset: -2px;
+        }
+
+        /* Botón "Agregar al carrito" */
+        .producto__boton--carrito {
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        .producto__precio,
+        .detalle__precio {
+            font-weight: 700;
+            color: #1a7a3c;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<header>
+  <div id="header"></div>
+</header>
+
+<!-- =============================================================
+     CONTENIDO PRINCIPAL
+     No se incluye HEADER ni FOOTER como solicitaste.
+     ============================================================= -->
+
+<main class="contenedor">
+
+    <!-- Título de la sección -->
+    <h1 class="titulo-pagina">Reactivos</h1>
+
+
+    <!-- =========================================================
+         BUSCADOR Y FILTROS
+         ========================================================= -->
+
+    <section class="controles">
+
+        <!-- Primera fila -->
+        <div class="busqueda">
+
+            <input
+                type="search"
+                class="campo"
+                id="buscador"
+                placeholder="Buscar producto..."
+            >
+
+            <select class="campo" id="categoria">
+
+                <option value="">Todas las categorías</option>
+                <option value="Reactivos">Reactivos</option>
+                <option value="Soluciones">Soluciones</option>
+
+            </select>
+
+
+            <select class="campo" id="marca">
+
+                <option value="">Todas las marcas</option>
+                <option value="MERCK">MERCK</option>
+                <option value="SIGMA">SIGMA</option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Segunda fila -->
+        <div class="filtros">
+
+            <select class="campo">
+                <option>Categoría</option>
+                <option>Reactivos químicos</option>
+                <option>Reactivos analíticos</option>
+            </select>
+
+            <select class="campo">
+                <option>Marca</option>
+                <option>MERCK</option>
+                <option>SIGMA</option>
+            </select>
+
+            <select class="campo">
+                <option>Grado</option>
+                <option>Analítico</option>
+                <option>Industrial</option>
+            </select>
+
+            <select class="campo">
+                <option>Ordenar por</option>
+                <option>Nombre A - Z</option>
+                <option>Nombre Z - A</option>
+            </select>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         CATÁLOGO + DETALLE
+         ========================================================= -->
+
+    <section class="catalogo-layout">
+
+
+        <!-- =====================================================
+             GRID DE PRODUCTOS
+             ===================================================== -->
+
+        <div class="productos-grid" id="productosGrid">
+
+
+            <!-- Los productos se generan dinámicamente desde Google Sheets -->
+            <!-- Ver scripts/productos.js -->
+            <p class="cargando-productos" id="cargandoProductos">Cargando productos...</p>
+
+            <!-- Este mensaje aparece si ningún producto coincide -->
+            <div class="sin-resultados" id="sinResultados">
+                No se encontraron productos.
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             DETALLE DEL PRODUCTO
+             ===================================================== -->
+
+        <aside class="detalle">
+
+            <!-- Espacio donde posteriormente podrías colocar imagen -->
+            <div class="detalle__placeholder">
+                Producto seleccionado
+            </div>
+
+
+            <!-- El contenido se actualiza con JavaScript -->
+
+            <h2
+                class="detalle__titulo"
+                id="detalleNombre"
+            >
+                Ácido clorhídrico
+            </h2>
+
+            <p
+                class="detalle__marca"
+                id="detalleMarca"
+            >
+                MERCK
+            </p>
+
+
+            <p class="detalle__categoria">
+
+                <strong>Categoría:</strong>
+
+                <span id="detalleCategoria">
+                    Reactivos
+                </span>
+
+            </p>
+
+            <p class="detalle__precio" id="detallePrecio">
+                <strong>Precio:</strong>
+                <span id="detallePrecioValor">$0.00</span>
+            </p>
+
+
+            <h3>Descripción</h3>
+
+            <p class="detalle__descripcion">
+                Producto químico destinado a aplicaciones
+                profesionales, experimentales y procedimientos
+                especializados de laboratorio.
+            </p>
+
+
+            <!-- Tabla de especificaciones -->
+            <table class="tabla-datos">
+
+                <tbody>
+
+                    <tr>
+                        <th>Pureza</th>
+                        <td id="detallePureza">
+                            +10.5%
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Grado</th>
+                        <td>
+                            Analítico
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Presentación</th>
+                        <td id="detallePresentacion">
+                            10 ml
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Marca</th>
+                        <td id="tablaMarca">
+                            MERCK
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+            <!-- Acciones -->
+            <div class="detalle__acciones">
+
+                <button class="btn btn-principal" id="btnAgregarCarrito" type="button">
+                    Añadir al carrito
+                </button>
+
+                <button class="btn btn-secundario">
+                    Descargar ficha técnica
+                </button>
+
+            </div>
+
+        </aside>
+
+    </section>
+
+</main>
+
+
+<footer>
+  <div id="footer"></div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resumen del Pedido</title>
+  <link rel="stylesheet" href="CSS/resumen.css">
+  <script src="scripts/components.js" defer></script>
+</head>
+<body>
+
+<header>
+  <div id="header"></div>
+</header>
+
+  <!-- CONTENIDO PRINCIPAL: RESUMEN DEL PEDIDO Y CUESTIONARIO -->
+  <main class="main-container">
+    
+    <!-- Título Principal -->
+    <h1 class="page-title">
+      Resumen del Pedido: <span class="highlight-id"></span>
+    </h1>
+
+    <form id="orderForm" class="order-grid">
+      
+      <!-- COLUMNA PRINCIPAL: FORMULARIO Y DETALLES -->
+      <div class="main-column">
+        
+        <!-- Bloque 1: Detalles del Pedido -->
+        <section class="card">
+          <h2 class="card-title">Detalles del Pedido</h2>
+          <div class="grid-3">
+            <div>
+              <p class="label-muted">ID de Pedido</p>
+              <p class="font-bold" id="orderId">DL-2026-84920</p>
+            </div>
+            <div>
+              <p class="label-muted">Fecha del Pedido</p>
+              <p class="font-semibold" id="orderDate">16 de Octubre de 2026</p>
+            </div>
+            <div>
+              <p class="label-muted">Estado del Pedido</p>
+              <span class="status-badge">Confirmado / En Proceso</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Bloque 2: Cuestionario - Datos de Contacto -->
+        <section class="card">
+          <h2 class="card-title">1. Datos de Contacto del Cliente</h2>
+          
+          <div class="grid-2">
+            <div class="form-group">
+              <label for="clientName">Nombre Completo *</label>
+              <input type="text" id="clientName" required value="Dr. Carlos Ramírez">
+            </div>
+
+            <div class="form-group">
+              <label for="institution">Institución / Laboratorio *</label>
+              <input type="text" id="institution" required value="Lab de Investigaciones">
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Teléfono de Contacto *</label>
+              <input type="tel" id="phone" required value="(619) 397-5770">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Correo Electrónico *</label>
+              <input type="email" id="email" required value="info@deirlab.com">
+            </div>
+          </div>
+        </section>
+
+        <!-- Bloque 3: Dirección de Entrega -->
+        <section class="card">
+          <h2 class="card-title">2. Dirección de Entrega</h2>
+          
+          <div class="grid-3">
+            <div class="form-group col-span-3">
+              <label for="address">Calle y Número *</label>
+              <input type="text" id="address" required value="Av. Benito Juárez 123">
+            </div>
+
+            <div class="form-group">
+              <label for="suburb">Colonia / Barrio *</label>
+              <input type="text" id="suburb" required value="Col. Centro">
+            </div>
+
+            <div class="form-group">
+              <label for="postalCode">Código Postal *</label>
+              <input type="text" id="postalCode" required value="72000">
+            </div>
+
+            <div class="form-group">
+              <label for="city">Ciudad *</label>
+              <input type="text" id="city" required value="Puebla">
+            </div>
+
+            <div class="form-group">
+              <label for="state">Estado *</label>
+              <input type="text" id="state" required value="Puebla">
+            </div>
+
+            <div class="form-group">
+              <label for="country">País *</label>
+              <input type="text" id="country" required value="México">
+            </div>
+
+            <div class="form-group col-span-3">
+              <label for="notes">Notas Especiales de Entrega (Opcional)</label>
+              <textarea id="notes" rows="2" placeholder="Ej. Entregar en horario de recepción de laboratorio (9:00 - 15:00 hrs)..."></textarea>
+            </div>
+          </div>
+        </section>
+
+        
+
+      </div>
+
+      <!-- COLUMNA SECUNDARIA: RESUMEN DE PAGO Y BOTONES -->
+      <aside class="sidebar-column">
+        <div class="card sidebar-card">
+          <h2 class="card-title">Resumen de Pago</h2>
+          
+          <div class="summary-breakdown">
+            <div class="summary-row">
+              <span>Subtotal Productos</span>
+              <span id="subtotalDisplay">$133,200.00</span>
+            </div>
+            <div class="summary-row">
+              <span>Envío Estimado</span>
+              <span id="shippingDisplay">$31,200.00</span>
+            </div>
+            <div class="summary-row">
+              <span>Impuestos (IVA 21%)</span>
+              <span id="taxDisplay">$27,972.00</span>
+            </div>
+            
+            <div class="summary-row summary-total">
+              <span>Pago Total</span>
+              <span id="totalDisplay" class="total-price">$192,372.00</span>
+            </div>
+          </div>
+
+          <div class="button-group">
+            <button type="submit" class="btn-primary">
+             Realizar pedido
+            </button>
+            
+            <button type="button" id="btnPrint" class="btn-secondary">
+              🖨️ Imprimir / Descargar PDF
+            </button>
+
+            <a href="carrito.html" class="btn-outline">
+              Editar Pedido
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </form>
+
+  </main>
+
+  <footer>
+  <div id="footer"></div>
+</footer>
+
+
+</body>
+</html>

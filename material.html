@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Permite que el diseño se adapte a celular, tablet y computadora -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Catálogo de Material de Laboratorio</title>
+
+    <link rel="stylesheet" href="CSS/productos.css">
+    <script src="scripts/carrito-storage.js" defer></script>
+    <script src="scripts/material.js" defer></script>
+    <script src="scripts/components.js" defer></script>
+   
+<header>
+  <div id="header"></div>
+</header>
+ <style>
+ /* Previsualización de imagen en el panel de detalle:
+           tamaño fijo y recorte proporcional, sin deformarse
+           ni mostrarse al tamaño original del archivo. */
+        .detalle__imagen {
+            width: 100%;
+            max-width: 320px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto 1rem;
+        }
+
+        /* Miniatura de cada tarjeta en el grid */
+        .producto__imagen {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 6px;
+            display: block;
+        }
+
+        /* La tarjeta completa es clicable y muestra la preview */
+        .producto {
+            cursor: pointer;
+        }
+
+        /* Tarjeta cuyo detalle se está viendo */
+        .producto--activo,
+        .producto:focus-visible {
+            outline: 2px solid #1a7a3c;
+            outline-offset: -2px;
+        }
+
+        /* Botón "Agregar al carrito" */
+        .producto__boton--carrito {
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        .producto__precio,
+        .detalle__precio {
+            font-weight: 700;
+            color: #1a7a3c;
+        }
+         </style>
+<!-- =============================================================
+     CONTENIDO PRINCIPAL
+     No se incluye HEADER ni FOOTER como solicitaste.
+     ============================================================= -->
+
+<main class="contenedor">
+
+    <!-- Título de la sección -->
+    <h1 class="titulo-pagina">Material de Laboratorio</h1>
+
+
+    <!-- =========================================================
+         BUSCADOR Y FILTROS
+         ========================================================= -->
+
+    <section class="controles">
+
+        <!-- Primera fila -->
+        <div class="busqueda">
+
+            <input
+                type="search"
+                class="campo"
+                id="buscador"
+                placeholder="Buscar material..."
+            >
+
+            <select class="campo" id="categoria">
+
+                <option value="">Todas las categorías</option>
+                <option value="Vidriería">Vidriería</option>
+                <option value="Material de medición">Material de medición</option>
+                <option value="Plástico">Plástico</option>
+                <option value="Consumibles">Consumibles</option>
+
+            </select>
+
+
+            <select class="campo" id="marca">
+
+                <option value="">Todas las marcas</option>
+                <option value="MERCK">MERCK</option>
+                <option value="SIGMA">SIGMA</option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Segunda fila -->
+        <div class="filtros">
+
+            <select class="campo">
+                <option>Categoría</option>
+                <option>Vidriería</option>
+                <option>Material de medición</option>
+                <option>Plástico</option>
+                <option>Consumibles</option>
+            </select>
+
+            <select class="campo">
+                <option>Marca</option>
+                <option>MERCK</option>
+                <option>SIGMA</option>
+            </select>
+
+            <select class="campo">
+                <option>Grado</option>
+                <option>Analítico</option>
+                <option>Industrial</option>
+            </select>
+
+            <select class="campo" id="ordenar">
+                <option value="">Ordenar por</option>
+                <option value="nombre-asc">Nombre A - Z</option>
+                <option value="nombre-desc">Nombre Z - A</option>
+            </select>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         CATÁLOGO + DETALLE
+         ========================================================= -->
+
+    <section class="catalogo-layout">
+
+
+        <!-- =====================================================
+             GRID DE MATERIAL
+             ===================================================== -->
+
+        <div class="productos-grid" id="productosGrid">
+
+
+            <!-- El material se genera dinámicamente desde Google Sheets -->
+            <!-- Ver scripts/material.js -->
+            <p class="cargando-productos" id="cargandoProductos">Cargando material...</p>
+
+            <!-- Este mensaje aparece si ningún producto coincide -->
+            <div class="sin-resultados" id="sinResultados">
+                No se encontró material.
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             DETALLE DEL MATERIAL
+             ===================================================== -->
+
+        <aside class="detalle">
+
+            <!-- Espacio donde posteriormente podrías colocar imagen -->
+            <div class="detalle__placeholder">
+                Producto seleccionado
+            </div>
+
+
+            <!-- El contenido se actualiza con JavaScript -->
+
+            <h2
+                class="detalle__titulo"
+                id="detalleNombre"
+            >
+                Vaso de precipitados
+            </h2>
+
+            <p
+                class="detalle__marca"
+                id="detalleMarca"
+            >
+                MERCK
+            </p>
+
+
+            <p class="detalle__categoria">
+
+                <strong>Categoría:</strong>
+
+                <span id="detalleCategoria">
+                    Vidriería
+                </span>
+
+            </p>
+
+            <p class="detalle__precio" id="detallePrecio">
+                <strong>Precio:</strong>
+                <span id="detallePrecioValor">$0.00</span>
+            </p>
+
+
+            <h3>Descripción</h3>
+
+            <p class="detalle__descripcion">
+                Recipiente de vidrio utilizado para contener, mezclar
+                y calentar sustancias.
+            </p>
+
+
+            <!-- Tabla de especificaciones -->
+            <table class="tabla-datos">
+
+                <tbody>
+
+                    <tr>
+                        <th>Pureza</th>
+                        <td id="detallePureza">
+                            —
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Grado</th>
+                        <td id="detalleGrado">
+                            —
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Presentación</th>
+                        <td id="detallePresentacion">
+                            —
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Marca</th>
+                        <td id="tablaMarca">
+                            MERCK
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+            <!-- Acciones -->
+            <div class="detalle__acciones">
+
+                <button class="btn btn-principal" id="btnAgregarCarrito" type="button">
+                    Añadir al carrito
+                </button>
+
+                <button class="btn btn-secundario">
+                    Descargar ficha técnica
+                </button>
+
+            </div>
+
+        </aside>
+
+    </section>
+
+</main>
+
+
+<footer>
+  <div id="footer"></div>
+</footer>
+
+</body>
+</html>
