@@ -573,3 +573,54 @@ h1, h2, h3 {
     grid-template-columns: 1fr;
   }
 }
+/* ===================== ACORDEÓN POR QUÉ DEIR LAB ===================== */
+.accordion {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.accordion__item {
+  border-bottom: 1px solid #e2e8f0;
+  padding: 1rem 0;
+}
+
+.accordion__header {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #1e293b;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Ocultar la flecha por defecto de navegador en Chrome/Safari */
+.accordion__header::-webkit-details-marker {
+  display: none;
+}
+
+/* Cuadrado indicador similar a la maqueta */
+.accordion__header .icon {
+  width: 10px;
+  height: 10px;
+  background-color: #1e293b;
+  display: inline-block;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Cambia animación/color cuando está abierto */
+.accordion__item[open] .icon {
+  transform: rotate(45deg);
+  background-color: #2563eb; /* Color de acento */
+}
+
+.accordion__content {
+  padding-top: 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #64748b;
+}
